@@ -1,0 +1,36 @@
+package cars;
+
+import java.util.Comparator;
+
+public class Cars implements Comparator<Cars>, Comparable<Cars>{
+		
+	private String model;
+	private int cost;
+	
+	Cars(){}
+	
+	Cars(String model, int cost){
+		this.model = model; 
+		this.cost = cost;
+	}
+	
+	String getModel(){
+		return model;
+	}
+	
+	int getCost(){
+		return cost;
+	}
+
+	@Override
+	public int compareTo(Cars o) {
+		return (this.model).compareTo(o.model);
+	}
+
+	@Override
+	public int compare(Cars o1, Cars o2) {
+		return o1.cost - o2.cost;
+	}
+}
+
+
