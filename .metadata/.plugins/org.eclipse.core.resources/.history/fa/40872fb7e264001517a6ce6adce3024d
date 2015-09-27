@@ -1,0 +1,74 @@
+package searchNumber;
+
+import java.util.*;
+
+public class SearchNumber {
+	
+	 
+	int min, max;
+	
+	public static void main(String[] args) {
+		
+		SearchNumber searchNumber = new SearchNumber();
+		int[] randomNumArray = searchNumber.getRandomArray();
+		int[] sortedNumArray = searchNumber.sortRandomArray(randomNumArray);
+	
+		//int found = searchNumber.findNumber(5, sortedNumArray);
+			//System.out.println("Found the number"+ found);
+
+	    // nextInt is normally exclusive of the top value,
+	    // so add 1 to make it inclusive
+	    
+	}
+	
+	int[] getRandomArray(){
+		min = 1;
+		max = 10;
+		int i = 0;
+		int[] randomNumArray = new int[10];
+		
+		Random rand = new Random();
+		do{
+			int randomNum = rand.nextInt((max - min) + 1) + min;
+			System.out.println(randomNum);
+			randomNumArray[i] = randomNum;
+			
+			i++;
+		}while(i < 5);
+		//NEEED TO FIGURE OUT HOW TO SORT IN ASCENDING ORDER AND THEN TEST IT
+		Arrays.sort(randomNumArray,0,10);
+		System.out.println("found"+randomNumArray[2]);
+		
+		return randomNumArray;
+	}
+	
+	int[] sortRandomArray(int[] randomNumArray){
+		return randomNumArray;
+		/*
+		final int[] data = new int[] { 5, 4, 2, 1, 3 };
+		
+		final Integer[] sorted = ArrayUtils.toObject(data);
+		
+		Arrays.sort(sorted, new Comparator<Integer>() {
+		    public int compare(Integer o1, Integer o2) {
+		        return o2.compareTo(o1);
+		    }
+		});
+		System.arraycopy(ArrayUtils.toPrimitive(sorted), 0, data, 0, sorted.length);
+		return null;*/
+	}
+	//Binary search: O(logn)
+	int findNumber(int findNum, int[] randomNumArray){
+		int mid = 0;
+		while(min <= max){
+			mid = ((max - min)/2) + 1;
+			if(randomNumArray[mid] > findNum)
+				max = mid - 1;
+			else if(randomNumArray[mid] < findNum)
+				min = mid + 1;
+			else
+				return mid;//found
+		}
+		return -1;//not found
+	}
+}

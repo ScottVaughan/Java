@@ -1,0 +1,62 @@
+package searchNumber;
+
+import java.util.*;
+
+public class SearchNumber {
+	
+	public static void main(String[] args) {
+		
+		SearchNumber searchNumber = new SearchNumber();
+		int[] randomNumArray = searchNumber.getRandomArray();
+		
+		String found = searchNumber.findNumber(15600, randomNumArray);
+		found += searchNumber.findNumber(80965, randomNumArray);
+		found += searchNumber.findNumber(4500, randomNumArray);
+		found += searchNumber.findNumber(357089, randomNumArray);
+		
+		searchNumber.print(found);
+	}
+	
+	int[] getRandomArray(){
+		int minNum = 1;
+		int maxNum = 1000000;
+		int i = 0;
+		int[] randomNumArray = new int[500000];
+		
+		Random rand = new Random();
+		do{
+			int randomNum = rand.nextInt((maxNum - minNum) + 1) + minNum;
+			System.out.println(randomNum);
+			randomNumArray[i] = randomNum;
+			i++;
+		}while(i < 500000);
+		//Use java.util.Arrays to sort array in ascending order
+		Arrays.sort(randomNumArray);
+		return randomNumArray;
+	}
+	
+	//Binary search: O(logn)
+	String findNumber(int findNum, int[] randomNumArray){
+		String isFound;
+		
+		int mid = 0;
+		int max = 500000 - 1;//max array size
+		int min = 0;//min array size
+		
+		while(min <= max){
+			mid = (min + max)/2;
+			if(randomNumArray[mid] > findNum)
+				max = mid - 1;
+			else if(randomNumArray[mid] < findNum)
+				min = mid + 1;
+			else
+				return isFound = "Found the number: "+ findNum 
+							   + " At index: "+ mid + "\n";
+		}
+		return isFound = "Did not find the number in the array\n";
+	}
+	
+	void print(String Results){
+		System.out.println(Results);
+	}
+}

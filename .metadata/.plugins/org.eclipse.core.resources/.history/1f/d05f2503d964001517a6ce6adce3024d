@@ -1,0 +1,56 @@
+package searchNumber;
+
+import java.util.*;
+
+public class SearchNumber {
+	
+	int[] randomNumArray; 
+	int min, max;
+	
+	public static void main(String[] args) {
+		
+		SearchNumber searchNumber = new SearchNumber();
+		searchNumber.getRandomArray();
+		int found = searchNumber.findNumber(5);
+			System.out.println("Found the number"+ found);
+
+	    // nextInt is normally exclusive of the top value,
+	    // so add 1 to make it inclusive
+	    
+	}
+	
+	int[] getRandomArray(){
+		min = 1;
+		max = 10;
+		int i = 0;
+		randomNumArray = new int[10];
+		
+		Random rand = new Random();
+		do{
+			int randomNum = rand.nextInt((max - min) + 1) + min;
+			System.out.println(randomNum);
+			randomNumArray[i] = randomNum;
+			i++;
+		}while(i < 5);
+		System.out.println("Out");
+		//Use Java.util.Arrays to sort randomized array in ascending order
+		Arrays.sort(randomNumArray);
+		return randomNumArray;
+	}
+	//Binary search: O(logn)
+	int findNumber(int findNum){
+		int mid = 0;
+		for(int numInArray : randomNumArray){
+			mid = ((max - min)/2) + 1;
+			System.out.println("While");
+			System.out.println(mid);
+			if(randomNumArray[mid] > findNum)
+				max = mid - 1;
+			else if(randomNumArray[mid] < findNum)
+				min = mid + 1;
+			else
+				return mid; //found
+		}
+		return -1;
+	}
+}

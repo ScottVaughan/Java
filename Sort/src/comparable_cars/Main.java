@@ -10,7 +10,7 @@ public class Main {
 	
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		
+
 		Main main = new Main();
 		Cars CT6 = new Cars("Cadillac CT6", 200);
 		Cars Mustang = new Cars("Ford Mustang", 450);
